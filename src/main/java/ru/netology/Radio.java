@@ -1,37 +1,37 @@
 package ru.netology;
 
 public class Radio {
-    public int currentChannel;
+    private int currentChannel;
+    private int currentVolume;
 
     public int getCurrentChannel() {
         return currentChannel;
     }
 
     public void setCurrentChannel(int newCurrentChannel) {
-        if (newCurrentChannel > 9) {
-            return;
+        if (newCurrentChannel <= 9) {
+            if (newCurrentChannel >= 0) {
+                this.currentChannel = newCurrentChannel;
+            }
         }
-        currentChannel = newCurrentChannel;
     }
 
-    public void nextChannel() {
-        if (currentChannel < 9) {
-            currentChannel = currentChannel + 1;
-        } else {
+    public void next() {
+        if (currentChannel == 9) {
             currentChannel = 0;
-        }
-
-    }
-
-    public void prevChannel() {
-        if (currentChannel > 0) {
-            currentChannel = currentChannel - 1;
         } else {
-            currentChannel = 9;
+            currentChannel = currentChannel + 1;
         }
+
     }
 
-    public int currentVolume;
+    public void prev() {
+        if (currentChannel == 0) {
+            currentChannel = 9;
+        } else {
+            currentChannel = currentChannel - 1;
+        }
+    }
 
     public int getCurrentVolume() {
         return currentVolume;
@@ -39,7 +39,12 @@ public class Radio {
 
     public void setCurrentVolume(int newCurrentVolume) {
 
-        currentVolume = newCurrentVolume;
+        if (newCurrentVolume >= 0) {
+            if (newCurrentVolume <= 100) {
+                this.currentVolume = newCurrentVolume;
+            }
+        }
+
     }
 
     public void increaseVolume() {
