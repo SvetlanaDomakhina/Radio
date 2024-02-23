@@ -145,4 +145,38 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    @Test
+    public void shouldSetChannelAmount() {
+        Radio radio = new Radio(20);
+        radio.setCurrentChannel(11);
+        int expected = 11;
+        int actual = radio.getCurrentChannel();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldNext() {
+        Radio radio = new Radio(20);
+        radio.setCurrentChannel(19);
+        radio.next();
+
+        int expected = 0;
+        int actual = radio.getCurrentChannel();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldPrev() {
+        Radio radio = new Radio(20);
+        radio.setCurrentChannel(0);
+        radio.prev();
+
+        int expected = 19;
+        int actual = radio.getCurrentChannel();
+        Assertions.assertEquals(expected, actual);
+    }
+
 }
+
+
+
